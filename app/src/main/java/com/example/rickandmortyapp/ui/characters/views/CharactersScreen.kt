@@ -15,6 +15,7 @@ import androidx.navigation.NavController
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemKey
+import com.example.rickandmortyapp.ui.Screen
 import com.example.rickandmortyapp.ui.characters.CharactersViewModel
 
 
@@ -42,6 +43,9 @@ fun CharactersScreen(
                     if (character != null) {
                         CharacterRow(
                             character,
+                            onItemClick = {
+                                navController.navigate(Screen.CharacterDetailScreen.route+"/${character.id}")
+                            }
                         )
                     }
                 }
