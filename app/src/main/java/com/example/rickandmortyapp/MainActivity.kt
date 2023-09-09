@@ -12,6 +12,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.rickandmortyapp.ui.Screen
+import com.example.rickandmortyapp.ui.SplashScreen
 import com.example.rickandmortyapp.ui.character_details.views.CharacterDetailScreen
 import com.example.rickandmortyapp.ui.characters.views.CharactersScreen
 import com.example.rickandmortyapp.ui.theme.RickAndMortyAppTheme
@@ -28,8 +29,12 @@ class MainActivity : ComponentActivity() {
                     val navController = rememberNavController()
                     NavHost(
                         navController = navController,
-                        startDestination = Screen.CharactersScreen.route
+                        startDestination = Screen.SplashScreen.route
                     ) {
+                        composable(route = Screen.SplashScreen.route){
+                            SplashScreen(navController = navController)
+                        }
+                        
                         composable(route = Screen.CharactersScreen.route){
                             CharactersScreen(navController = navController,
                                 hiltViewModel())
