@@ -26,6 +26,8 @@ fun Result.toCharacterDetail(): CharacterDetail {
         species = species ?: "",
         status = status ?: "",
         type = type ?: "",
-        url = url ?: ""
+        url = url ?: "",
+        location = location?.name ?: "",
+        origin = origin?.name ?: ""
     )
 }

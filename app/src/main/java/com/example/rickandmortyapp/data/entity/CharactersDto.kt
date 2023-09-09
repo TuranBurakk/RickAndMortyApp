@@ -18,7 +18,9 @@ fun CharactersDto.toCharacters(): Characters {
             species = it.species ?: "",
             status = it.status ?: "",
             type = it.type ?: "",
-            url = it.url ?: ""
+            url = it.url ?: "",
+            location = it.location?.name ?: "",
+            origin = it.origin?.name ?: ""
         )
     }
 
