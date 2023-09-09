@@ -1,5 +1,6 @@
 package com.example.rickandmortyapp.ui
 
+import android.app.Activity
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -32,4 +33,5 @@ fun SplashScreen(navController: NavHostController) {
             navController.navigate(Screen.CharactersScreen.route)
         }
     }
+
 }

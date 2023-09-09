@@ -1,6 +1,9 @@
 package com.example.rickandmortyapp.ui.characters.views
 
 
+import android.app.Activity
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -22,9 +25,15 @@ import com.example.rickandmortyapp.ui.characters.CharactersViewModel
 @Composable
 fun CharactersScreen(
     navController: NavController,
-    viewModel: CharactersViewModel = hiltViewModel()
+    viewModel: CharactersViewModel = hiltViewModel(),
+
 ) {
     val characters = viewModel.characters.collectAsLazyPagingItems()
+
+    BackHandler {
+        (navController.context as? ComponentActivity)?.finish()
+    }
+
 
 
     Box(modifier = Modifier.fillMaxSize()) {
@@ -58,3 +67,5 @@ fun CharactersScreen(
         }
     }
 }
+
+
