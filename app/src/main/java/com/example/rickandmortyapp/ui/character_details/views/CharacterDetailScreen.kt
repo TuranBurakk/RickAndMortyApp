@@ -1,4 +1,4 @@
-package com.example.rickandmortyapp.ui.character_details
+package com.example.rickandmortyapp.ui.character_details.views
 
 import android.os.Build
 import androidx.annotation.RequiresExtension
@@ -25,6 +25,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.rememberImagePainter
+import com.example.rickandmortyapp.ui.character_details.CharacterDetailViewModel
 
 @RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
 @Composable
@@ -33,37 +34,56 @@ fun CharacterDetailScreen(
 ) {
     val state = viewModel.state.value
 
-    Box(modifier = Modifier.fillMaxSize().background(Color.DarkGray)) {
+    Box(modifier = Modifier
+        .fillMaxSize()
+        .background(Color.DarkGray)) {
         state.character?.let { character ->
             Column(
-                verticalArrangement = Arrangement.SpaceEvenly,
+                verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Image(
-                    painter = rememberImagePainter(character.image),
-                    contentDescription = null,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(250.dp)
-                        .padding(2.dp)
-                        .clip(RoundedCornerShape(16.dp))
-                )
-                Text(
-                    text = character.name,
-                    style = MaterialTheme.typography.headlineMedium,
-                    modifier = Modifier.padding(0.dp, 16.dp)
-                )
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(16.dp, 0.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween
+                Column(
+                    verticalArrangement = Arrangement.SpaceEvenly,
+                    horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    CharacterInfo("Status", character.status)
-                    CharacterInfo("Species", character.species)
-                    CharacterInfo("Gender", character.gender)
+                    Image(
+                        painter = rememberImagePainter(character.image),
+                        contentDescription = null,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(250.dp)
+                            .padding(2.dp)
+                            .clip(RoundedCornerShape(16.dp))
+                    )
+                    Text(
+                        text = character.name,
+                        style = MaterialTheme.typography.headlineMedium,
+                        modifier = Modifier.padding(0.dp, 16.dp)
+                    )
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(16.dp, 0.dp),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        CharacterInfo("Status", character.status)
+                        CharacterInfo("Species", character.species)
+                        CharacterInfo("Gender", character.gender)
+
+                    }
+
+                }
+                Column(modifier = Modifier.padding(top = 20.dp)) {
+                    Row {
+                        CharacterInfo(header = "Location", info = character.location)
+
+                    }
+                }
+                Column (modifier = Modifier.padding(top = 20.dp)){
+                    CharacterInfo(header = "Origin", info = character.origin)
                 }
             }
+
         }
         if (state.error.isNotBlank()) {
             Text(

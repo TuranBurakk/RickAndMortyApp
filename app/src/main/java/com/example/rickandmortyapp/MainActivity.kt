@@ -12,7 +12,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.rickandmortyapp.ui.Screen
-import com.example.rickandmortyapp.ui.character_details.CharacterDetailScreen
+import com.example.rickandmortyapp.ui.character_details.views.CharacterDetailScreen
 import com.example.rickandmortyapp.ui.characters.views.CharactersScreen
 import com.example.rickandmortyapp.ui.theme.RickAndMortyAppTheme
 import dagger.hilt.android.AndroidEntryPoint
